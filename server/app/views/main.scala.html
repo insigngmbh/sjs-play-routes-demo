@@ -1,0 +1,73 @@
+@*
+ * This template is called from the `index` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * two arguments, a `String` for the title of the page and an `Html`
+ * object to insert into the body of the page.
+ *@
+
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html lang="en" class="mdl-js">
+
+    <head>
+
+        @* Render the page title *@
+        <title>@title</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/material-design-lite/material.min.css")">
+
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+
+    </head>
+
+    <body cz-shortcut-listen="true">
+
+        <div class="mdl-layout__container has-scrolling-header">
+
+            <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+
+                <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+                    <div class="mdl-layout__header-row">
+                        <span class="mdl-layout-title">@title</span>
+                    </div>
+                </header>
+
+                <div class="demo-ribbon"></div>
+
+                <main class="demo-main mdl-layout__content">
+
+                    <div class="demo-container mdl-grid">
+
+                        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+
+                        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+
+                            <h1>@title</h1>
+
+                            @* Render the page content *@
+                            @content
+
+                        </div>
+
+                    </div>
+
+                </main>
+
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="@routes.Assets.versioned("lib/material-design-lite/material.min.js")"></script>
+
+        @* Add the script from the 'client' project *@
+        @scalajs.html.scripts("client", routes.Assets.versioned(_).toString, name => getClass.getResource(s"/public/$name") != null)
+
+    </body>
+
+</html>

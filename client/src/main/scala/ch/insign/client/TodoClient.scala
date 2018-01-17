@@ -31,12 +31,6 @@ class TodoClient(protocol: Protocol, host: String, port: Int) {
       .withHost(host)
       .withPort(port)
 
-
-  def foo(): Unit =
-    TodoController.list()
-      .send()
-
-
   def list(): Future[List[Todo]] =
     TodoController
       .list()
